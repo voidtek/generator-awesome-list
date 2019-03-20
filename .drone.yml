@@ -1,0 +1,27 @@
+workspace:
+  base: /test
+  path: generator-awesome-list
+
+services:
+  web:
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
+    environment:
+      - DOCUMENT_ROOT=/test/generator-awesome-list
+
+pipeline:
+  # Download all dependencies.
+  composer-create-project:
+    group: create-project
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
+    volumes:
+      - /cache:/cache
+    commands:
+      # remove the cache for internal use.
+      - rm -rf /cache/composer/vcs/-test-generator-awesome-list
+      - composer create-project --repository-url=packages.json --ansi --no-progress --no-interaction voidtek/generator-awesome-list awesome-stuff
+
+matrix:
+  PHP_VERSION:
+    - 7.1
+    - 7.2
+    - 7.3

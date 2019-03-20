@@ -1,0 +1,39 @@
+{
+    "name": "voidtek/generator-awesome-list",
+    "description": "Generator for GitHub awesome lists using compose.",
+    "type": "project",
+    "license": "EUPL-1.2",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1",
+        "composer/installers": "^1.5",
+        "cweagans/composer-patches": "^1.0",
+        "webmozart/path-util": "^2.3"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "GeneratorAwesomeList\\composer\\GeneratorWizard::run"
+        ],
+        "post-create-project-cmd": [
+            "GeneratorAwesomeList\\composer\\CheckGeneratorWizard::run",
+            "GeneratorAwesomeList\\composer\\GeneratorWizard::cleanup"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/GeneratorWizard.php",
+            "scripts/composer/CheckGeneratorWizard.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.9"
+        }
+    }
+}
