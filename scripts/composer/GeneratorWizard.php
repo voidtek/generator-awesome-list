@@ -97,9 +97,7 @@ class GeneratorWizard {
     // Remove composer create-project files.
     $filenames = [
       'scripts/composer/CheckGeneratorWizard.php',
-      'scripts/composer/GeneratorWizard.php',
-      'composer.json',
-      'composer.lock',
+      'scripts/composer/GeneratorWizard.php'
     ];
 
     foreach ($filenames as $filename) {
